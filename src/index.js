@@ -25,16 +25,17 @@ const App = () => {
     return <>
         <h1>App</h1>
         <ul>
-            {state.map(el =>
-                <li key={el.id}>
-                    <p>{el.title}</p>
-                    <p>{el.status}</p>
-                    <p>{`Completed: ${el.completed}`}</p>
-                    <button onClick={() => completeTask(el.id)}>Complete</button>
-                    <button onClick={() => changeTitle(el.id)}>Change title</button>
-                    <button onClick={() => removeTask(el.id)}>Remove</button>
-                    <hr/>
-                </li>)
+            {state.length !== 0 ?
+              state.map(({id, title, status, completed}) =>
+                <li key={id}>
+                <p>{title}</p>
+                <p>{status}</p>
+                <p>{`Completed: ${completed}`}</p>
+                <button onClick={() => completeTask(id)}>Complete</button>
+                <button onClick={() => changeTitle(id)}>Change title</button>
+                <button onClick={() => removeTask(id)}>Remove</button>
+                <hr/>
+                </li>) : (<h2>Нет тасков</h2>)
             }
         </ul>
     </>
